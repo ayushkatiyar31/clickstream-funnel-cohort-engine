@@ -8,3 +8,4 @@ COPY (
     WHERE hash(user_id) % 5 = 0
 ) TO 'data/parquet/events_20pct.parquet'
   (FORMAT PARQUET, COMPRESSION ZSTD);
+  
