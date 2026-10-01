@@ -1,0 +1,7 @@
+.venv/
+data/raw/
+data/parquet/
+*.duckdb
+*.duckdb.wal
+__pycache__/
+.ipynb_checkpoints/
