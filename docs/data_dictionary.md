@@ -35,3 +35,27 @@
 - **Purchases without an earlier view/cart in the same session:** 1,437 out of 281,856 purchase sessions (~0.51%).
 - **Date coverage:** Data spans 61 days from October 1 through November 30, 2019.
 - **Daily event volume:** Event counts vary across the two months, with higher daily volumes observed toward late November. This is an observed pattern and is not automatically attributed to a specific business event.
+
+
+
+## Cleaning log
+
+The staging step applies the following cleaning rules:
+
+- Exact duplicate rows are removed using `SELECT DISTINCT`.
+- Rows with `price <= 0` are removed.
+- NULL `category_code` values are replaced with `unknown`.
+- NULL `brand` values are replaced with `unknown`.
+- `category_code` is normalized to lowercase.
+- Category levels are split into `category_l1` and `category_l2`.
+
+### Cleaning results
+
+| Metric | Result |
+|---|---:|
+| Raw rows | 21,923,857 |
+| NULL price rows | 0 |
+| Non-positive price rows | 50,675 |
+| Rows after price filter | 21,873,182 |
+| Rows in `stg_events` | 21,846,166 |
+| Duplicate rows removed | 27,016 |

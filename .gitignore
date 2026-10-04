@@ -3,5 +3,6 @@ data/raw/
 data/parquet/
 *.duckdb
 *.duckdb.wal
+*.tmp/
 __pycache__/
 .ipynb_checkpoints/
