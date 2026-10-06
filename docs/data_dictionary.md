@@ -59,3 +59,9 @@ The staging step applies the following cleaning rules:
 | Rows after price filter | 21,873,182 |
 | Rows in `stg_events` | 21,846,166 |
 | Duplicate rows removed | 27,016 |
+| Metric | Result |
+|---|---:|
+| Dataset sessions | 4,578,740 |
+| Our sessions | 3,741,708 |
+| Our sessions with 1 dataset session ID | 84.46% |
+| Our sessions with multiple dataset IDs | 15.54% |
