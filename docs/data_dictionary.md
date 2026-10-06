@@ -65,3 +65,20 @@ The staging step applies the following cleaning rules:
 | Our sessions | 3,741,708 |
 | Our sessions with 1 dataset session ID | 84.46% |
 | Our sessions with multiple dataset IDs | 15.54% |
+
+
+## Session definition
+A session is a run of one user's events with no gap greater than 30 minutes.
+Built with LAG → gap flag → running SUM (sql/03_sessionize.sql).
+Sessions can cross midnight; they are not split by calendar day.
+
+| Gap threshold | Sessions | vs 30 min |
+|---|---:|---:|
+| 15 min | 3,929,368 | +5.0% |
+| 30 min | 3,741,708 | baseline |
+| 60 min | 3,588,440 | -4.1% |
+
+My sessions: **3,741,708**  
+Dataset `user_session` IDs: **4,578,740**
+
+Why they differ: The dataset provides its own `user_session` identifiers, but the exact rules used to generate them are not documented. This project uses a transparent 30-minute inactivity rule, so the two definitions can produce different session counts. A single dataset session may be split into multiple sessions under the 30-minute rule, while one of our sessions can contain multiple dataset session IDs. Neither definition is necessarily wrong; the project's definition is explicit, consistent, and reproducible for analysis.
