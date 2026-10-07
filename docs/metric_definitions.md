@@ -23,4 +23,49 @@
 - Hour/weekday use session_start, so a session belongs to the hour it began.
 
 ## Treatment of purchases with no cart/view
-(Fill in after Step 4.)
+
+The dataset contains sessions where a purchase occurs without a cart event
+in the same session.
+
+Observed results:
+
+| Metric | Count |
+|---|---:|
+| Purchase sessions | 259,221 |
+| Purchase sessions with no cart | 83,720 |
+| Purchase sessions with no view | 926 |
+| Cart after purchase | 4,734 |
+| Cart with no view | 1,174 |
+
+A likely explanation is the 30-minute sessionization rule. For example, a
+user may view a product and add it to the cart, leave for more than 30 minutes,
+and then return and purchase. The inactivity rule splits these events into
+separate sessions.
+
+These sessions are not automatically treated as invalid purchases.
+
+Purchasing sessions are retained in the headline **session conversion rate**:
+
+- Purchase sessions: 259,221
+- All sessions: 3,741,708
+- Session conversion rate: 6.93%
+
+For the chronological funnel, sessions must follow:
+
+**view → cart → purchase**
+
+Therefore, sessions that cannot be placed into this sequence are excluded
+from the **strict funnel**.
+
+The resulting strict funnel conversion is **4.53%**, compared with **6.93%**
+for the overall session purchase rate.
+
+The two metrics answer different questions:
+
+- **6.93% Session conversion rate:** What percentage of all sessions resulted
+  in a purchase?
+- **4.53% Strict funnel conversion:** What percentage of sessions progressed
+  through the chronological view → cart → purchase funnel?
+
+This distinction preserves observed purchase activity while maintaining a
+logically ordered funnel for customer-journey analysis.
