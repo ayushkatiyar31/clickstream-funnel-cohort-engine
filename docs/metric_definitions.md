@@ -69,3 +69,17 @@ The two metrics answer different questions:
 
 This distinction preserves observed purchase activity while maintaining a
 logically ordered funnel for customer-journey analysis.
+
+## RFM Analysis
+
+- **Reference date:** The maximum event date in the dataset, 2019-11-30.
+- **Recency:** Number of days between a buyer's most recent purchase and the reference date. A lower value means a more recent purchase.
+- **Frequency:** Number of distinct purchase sessions per buyer.
+- **Monetary:** Sum of purchase-event prices per buyer. This is not adjusted for quantity, discounts, or refunds.
+- **R score:** Scored from 1–5 using the 20th, 40th, 60th, and 80th percentile cut points, with higher scores indicating more recent purchases.
+- **F score:** Custom thresholds: 1 purchase session = 1; 2 = 2; 3–4 = 3; 5–7 = 4; 8 or more = 5. Custom thresholds were used because purchase frequency is highly skewed and many buyers purchased only once.
+- **M score:** Scored from 1–5 using monetary-value percentile cut points.
+- **Segments:** Champions (R ≥ 4, F ≥ 3); Loyal (R ≥ 3, F ≥ 3); At Risk (R ≤ 2, F ≥ 2); Promising (remaining buyers with F ≥ 2); One-time recent (remaining buyers with R ≥ 3); Hibernating (all remaining buyers). Rules are applied in order, with the first matching rule taking precedence.
+- **Scope:** 139,462 buyers out of 1,063,104 observed users (13.12%).
+- **Pareto finding:** The top 20% of buyers by monetary value generate approximately 72.2% of buyer revenue in this sampled dataset.
+- **Limitations:** The observation window covers only October–November 2019, so recency is compressed. The 20% user sample supports analysis of patterns and shares but does not represent the full store's absolute revenue. Segment thresholds are specific to this dataset and should be reassessed with a longer observation period.
