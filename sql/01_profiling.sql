@@ -20,6 +20,7 @@ SELECT *
 FROM 'data/parquet/events_20pct.parquet';
 
 
+
 -- 3. Event type split
 SELECT
     event_type,
